@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 def parse_text(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.text, 'lxml')
-    table_1 = soup.find('div', 'm_l fl')
+    table = soup.find('div', 'm_l fl')
     headers = []
-    for i in table_1.find_all('ul'):
+    for i in table.find_all('ul'):
         headers.append(i.text)
     return headers
 
