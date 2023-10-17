@@ -1,5 +1,5 @@
 from openpyxl import Workbook as book
-from Sheets import phones
+from .Sheets import phones
 
 
 def create_book():
@@ -18,7 +18,7 @@ def create_phone_sheet(work_book,platform, data):
     phones.set_styles(work_sheet, data)
 
 
-def main(androit_data, ios_data, ai_data):
+def main(data, platform, path):
     work_book = create_book()
-    create_phone_sheet(work_book, 'Android', android_data)
-    create_phone_sheet(work_book, 'IOS', ios_data)
+    create_phone_sheet(work_book, platform, data)
+    save_book(work_book, path)

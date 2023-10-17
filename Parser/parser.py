@@ -17,7 +17,7 @@ def get_phones_data(headers):
     for i in range(2, len(headers)):
         headers_split = headers[i].split('\n')
         name = headers_split[2]
-        if i>1 and i<11:
+        if i>=2 and i<=10:
             id = name[0]
             name = name[1:]
         else:
@@ -29,6 +29,7 @@ def get_phones_data(headers):
         ux = headers_split[6]
         t_score = headers_split[7]
         table[id] = [name, cpu, gpu, mem, ux, t_score]
+    return table
 
 
 def get_ai_data(headers):
@@ -36,7 +37,7 @@ def get_ai_data(headers):
     for i in range(2, len(headers)):
         headers_split = headers[i].split('\n')
         name = headers_split[2]
-        if i>1 and i<11:
+        if i>=2 and i<=10:
             id = name[0]
             name = name[1:]
         else:
@@ -46,10 +47,4 @@ def get_ai_data(headers):
         object_direction = headers_split[4]
         t_score = headers_split[5]
         table[id] = [name, image_classification, object_direction, t_score]
-
-#
-# Usage example
-#
-# get_phones_data(parse_text('https://www.antutu.com/en/ranking/rank1.htm'))
-# get_phones_data(parse_text('https://www.antutu.com/en/ranking/ios1.htm'))
-# get_ai_data(parse_text('https://www.antutu.com/en/ranking/ai1.htm'))
+    return table

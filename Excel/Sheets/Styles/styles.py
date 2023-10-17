@@ -5,8 +5,6 @@ def title_font():
     sF = Font(name="TimesNewRoman",
               size=14,
               bold=True)
-    # sA = Alignment(horizontal='center',
-    #                vertical='center')
     return sF
 
 
