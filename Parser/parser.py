@@ -37,7 +37,7 @@ def get_ai_data(headers):
     for i in range(2, len(headers)):
         headers_split = headers[i].split('\n')
         name = headers_split[2]
-        if i>=2 and i<=10:
+        if i >= 2 and i <= 10:
             id = name[0]
             name = name[1:]
         else:
