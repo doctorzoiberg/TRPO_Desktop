@@ -23,4 +23,4 @@ jobs:
 #        pylint $(git ls-files '*.py')
     - name: Analysing the code with flake8
       run: |
-        flake8 main.py ./Parser ./Excel
+        flake8 --ignore=E501 main.py ./Parser ./Excel ./Excel/Sheets ./Excel/Sheets/Styles
