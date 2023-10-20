@@ -1,6 +1,5 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
 from Frontend.app import Ui_MainWindow
 from Parser import parser
 from Excel import book
@@ -25,9 +24,9 @@ class Main(QtWidgets.QMainWindow):
 
     def create_book(self, platform, url):
         filename, ok = QtWidgets.QFileDialog.getSaveFileName(self,
-                                                   "Сохранить файл",
-                                                   ".",
-                                                   "Xlsx Files (*.xlsx)")
+                                                             "Сохранить файл",
+                                                             ".",
+                                                             "Xlsx Files (*.xlsx)")
         data = parser.get_phones_data(parser.parse_text(url))
         book.main(data, platform, filename)
 

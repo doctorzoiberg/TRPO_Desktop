@@ -45,7 +45,7 @@ def set_data(work_sheet, data):
 
 
 def set_styles(work_sheet, data):
-    for key in range(1, len(data)+3):
+    for key in range(1, len(data) + 3):
         align = styles.alignment()
         work_sheet[f'A{key}'].alignment = align
         work_sheet[f'B{key}'].alignment = align
@@ -79,7 +79,7 @@ def set_styles(work_sheet, data):
     work_sheet[f'E{len(data) + 2}'].border = border
     work_sheet[f'F{len(data) + 2}'].border = border
 
-    for key in range(2, len(data)+2):
+    for key in range(2, len(data) + 2):
         border = styles.border('right')
         work_sheet[f'G{key}'].border = border
 
