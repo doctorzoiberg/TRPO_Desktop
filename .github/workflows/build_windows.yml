@@ -1,4 +1,4 @@
-name: Build on macOS
+name: Build on Windows
 
 on: [push, pull_request]
 
