@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: macos-12
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
@@ -21,4 +21,4 @@ jobs:
     - name: Build
       run: |
         pyinstaller --onefile main.py
-        ls -la ./dist
+        dir ./dist
