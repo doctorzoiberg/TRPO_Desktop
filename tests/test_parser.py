@@ -28,7 +28,7 @@ def test_get_phones_data(url):
     assert len(table) !=0
 
 
-def test_get_phones_data():
+def test_get_ai_data():
     url = 'https://www.antutu.com/en/ranking/ai1.htm'
     table = parser.get_ai_data(parser.parse_text(url))
     assert type(table) == dict
