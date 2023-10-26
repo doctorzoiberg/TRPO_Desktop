@@ -20,5 +20,5 @@ jobs:
 
     - name: Build
       run: |
-        pyinstaller --onefile main.py
+        pyinstaller --onefile app/main.py
         dir ./dist

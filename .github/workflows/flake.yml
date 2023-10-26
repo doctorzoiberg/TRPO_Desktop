@@ -3,7 +3,7 @@ name: Flake
 on: [push, pull_request]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -20,4 +20,4 @@ jobs:
         pip install flake8 darglint
     - name: Analysing the code with flake8
       run: |
-        flake8 --ignore=E501 main.py ./Parser ./Excel ./Excel/Sheets ./Excel/Sheets/Styles
+        flake8 --ignore=E501 ./app/main.py ./app/Parser ./app/Excel ./app/Excel/Sheets ./app/Excel/Sheets/Styles

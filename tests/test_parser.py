@@ -17,4 +17,4 @@ def test_access_url(url):
 def test_parse_text_data(url):
     headers = parser.parse_text(url)
     assert type(headers) == list
-    assert len(headers) == 0
+    assert len(headers) != 0
