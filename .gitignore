@@ -1,5 +1,6 @@
-Frontend/__pycache__
-Parser/__pycache__
-Excel/__pycache__
-Excel/Sheets/__pycache__
-Excel/Sheets/Styles/__pycache__
+app/Frontend/__pycache__
+app/Parser/__pycache__
+app/Excel/__pycache__
+app/Excel/Sheets/__pycache__
+app/Excel/Sheets/Styles/__pycache__
+tests/__pycache__
