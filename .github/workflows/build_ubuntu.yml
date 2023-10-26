@@ -20,12 +20,5 @@ jobs:
 
     - name: Build
       run: |
-        pyinstaller --onefile main.py
+        pyinstaller --onefile app/main.py
         ls -la ./dist
-
-    # - name: Archive production artifacts
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: dist
-    #     path: |
-    #       dist
