@@ -3,4 +3,6 @@ services:
   tests:
     build: .
     image: testing
-    command: pytest
+    volumes:
+      - .:/home
+    command: pytest --cov=app --cov-report=html

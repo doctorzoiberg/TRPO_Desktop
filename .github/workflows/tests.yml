@@ -10,10 +10,17 @@ jobs:
     - name: Run tests
       run: |
         docker-compose up | tee test_logs.md
-    - name: Archive production artifacts
+    - name: Archive production artifacts logs
       uses: actions/upload-artifact@v3
       with:
         name: pytest_logs
         path: |
           test_logs.md
+        retention-days: 1
+    - name: Archive production artifacts coverage
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: |
+          htmlcov/
         retention-days: 1

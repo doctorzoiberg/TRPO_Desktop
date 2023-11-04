@@ -18,26 +18,22 @@ class Main(QtWidgets.QMainWindow):
         self.ui.pushButton_BtnAlfandega_2.clicked.connect(lambda: self.create_book('Android', url_android))
         self.ui.pushButton_BtnAlfandega_7.clicked.connect(lambda: self.create_book('IOS', url_ios))
         # self.ui.pushButton_BtnAlfandega_11.clicked.connect(lambda: self.create_book('AI', url_ai))
-        self.ui.pushButton_Android.clicked.connect(lambda: self.set_android_page())
-        self.ui.pushButton_IOS.clicked.connect(lambda: self.set_ios_page())
-        self.ui.pushButton_AI.clicked.connect(lambda: self.set_ai_page())
+        self.ui.pushButton_Android.clicked.connect(lambda: self.set_page(1))
+        self.ui.pushButton_IOS.clicked.connect(lambda: self.set_page(2))
+        self.ui.pushButton_AI.clicked.connect(lambda: self.set_page(3))
 
     def create_book(self, platform, url):
         filename, ok = QtWidgets.QFileDialog.getSaveFileName(self,
                                                              "Сохранить файл",
                                                              ".",
                                                              "Xlsx Files (*.xlsx)")
+        if filename == '':
+            return
         data = parser.get_phones_data(parser.parse_text(url))
         book.main(data, platform, filename)
 
-    def set_android_page(self):
-        self.ui.stackedWidget.setCurrentIndex(1)
-
-    def set_ios_page(self):
-        self.ui.stackedWidget.setCurrentIndex(2)
-
-    def set_ai_page(self):
-        self.ui.stackedWidget.setCurrentIndex(3)
+    def set_page(self, index):
+        self.ui.stackedWidget.setCurrentIndex(index)
 
 
 if __name__ == "__main__":
