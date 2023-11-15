@@ -44,7 +44,11 @@ class Main(QtWidgets.QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(index)
 
     def open_win_1(self):
-        g_drive = drive.connect_to_google_drive()
+        try:
+            g_drive = drive.connect_to_google_drive()
+        except Exception:
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Невозможно пройти аутентификацию!")
+            return
         self.win_1 = Win1(g_drive)
         self.win_1.show()
 
@@ -59,9 +63,13 @@ class Win1(QtWidgets.QMainWindow):
 
     def open_win_2(self):
         url = self.ui.lineEdit.text()
-        folder_id = self.parse_url(url)
-        g_folder = drive.connect_to_folder(self.g_drive, folder_id)
-        self.win_2 = Win2(self.g_drive, g_folder)
+        try:
+            folder_id = self.parse_url(url)
+            g_folder = drive.connect_to_folder(self.g_drive, folder_id)
+            self.win_2 = Win2(self.g_drive, g_folder)
+        except Exception:
+            QtWidgets.QMessageBox.warning(self, "Ошибка", "Введите ссылку на папку!")
+            return
         self.win_2.show()
         self.close()
 
@@ -90,6 +98,8 @@ class Win2(QtWidgets.QMainWindow):
 
     def download_file(self, file_list):
         path_to_folder = QtWidgets.QFileDialog.getExistingDirectory(self, "Выберите папку")
+        if path_to_folder == '':
+            return
         local_file_path = os.path.join(path_to_folder, file_list[2]['title'])
         drive.download_file_from_drive(self.g_drive, file_list[2]['id'], local_file_path)
 
@@ -98,6 +108,8 @@ class Win2(QtWidgets.QMainWindow):
                                                              "Выберите файл",
                                                              ".",
                                                              "Xlsx Files (*.xlsx)")
+        if filename == '':
+            return
         drive.upload_file_to_drive(self.g_drive, filename, self.g_folder)
 
     def open_win_1(self):

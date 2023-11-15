@@ -5,4 +5,4 @@ services:
     image: testing
     volumes:
       - .:/home
-    command: pytest --cov=app --cov-report=html
+    command: pytest --cov=app --cov-report term --cov-report html -s
