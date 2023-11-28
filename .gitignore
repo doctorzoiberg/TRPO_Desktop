@@ -4,3 +4,4 @@ app/Excel/__pycache__
 app/Excel/Sheets/__pycache__
 app/Excel/Sheets/Styles/__pycache__
 tests/__pycache__
+app/client_secrets.json
