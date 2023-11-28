@@ -12,39 +12,40 @@ def parse_text(url):
     return headers
 
 
-def get_phones_data(headers):
-    table = dict()
-    for i in range(2, len(headers)):
-        headers_split = headers[i].split('\n')
-        name = headers_split[2]
-        if i >= 2 and i <= 10:
-            id = name[0]
-            name = name[1:]
-        else:
-            id = name[:2]
-            name = name[2:]
-        cpu = headers_split[3]
-        gpu = headers_split[4]
-        mem = headers_split[5]
-        ux = headers_split[6]
-        t_score = headers_split[7]
-        table[id] = [name, cpu, gpu, mem, ux, t_score]
-    return table
+def get_column_name_list(string):
+    column_name_list = list()
+
+    column_name_list.append('№')
+    for column_name in string.split('\n')[1:(-1)]:
+        column_name_list.append(str(column_name.strip().removesuffix('\ue603')))
+
+    return column_name_list
 
 
-def get_ai_data(headers):
-    table = dict()
+def get_table_row_list(number, string):
+    table_row_list = list()
+    string_split = string.split('\n')
+
+    table_row_list.append(str(number))
+
+    if number < 10:
+        name = string_split[2][1:]
+    else:
+        name = string_split[2][2:]
+    table_row_list.append(str(name.strip()))
+
+    for column_value in string_split[3:(-2)]:
+        table_row_list.append(str(column_value.strip()))
+
+    return table_row_list
+
+
+def get_data(headers, platform):
+    data = list()
+
+    data.append([platform])
+    data.append(get_column_name_list(headers[1]))
     for i in range(2, len(headers)):
-        headers_split = headers[i].split('\n')
-        name = headers_split[2]
-        if i >= 2 and i <= 10:
-            id = name[0]
-            name = name[1:]
-        else:
-            id = name[:2]
-            name = name[2:]
-        image_classification = headers_split[3]
-        object_direction = headers_split[4]
-        t_score = headers_split[5]
-        table[id] = [name, image_classification, object_direction, t_score]
-    return table
+        data.append(get_table_row_list((i - 1), headers[i]))
+
+    return data
